@@ -52,61 +52,86 @@ Project Structure
     └── BPI2012_RCA.md         # Root Cause Analysis document
 ```
 ---
-Tech Stack
-Tool	Purpose
-Python · pandas · pm4py	XES parsing, data cleaning, cycle time calculation
-SQLite · pandas	KPI queries, bottleneck detection, variant analysis
-Celonis EMS	Process Explorer, Variant Explorer, PQL custom KPIs
-Matplotlib	Cycle time distribution, activity frequency charts
+
+### Tech Stack
+
+
+| Tool | Purpose |
+| :--- | :--- |
+| **Python · pandas · pm4py** | XES parsing, data cleaning, cycle time calculation |
+| **SQLite · pandas** | KPI queries, bottleneck detection, variant analysis |
+| **Celonis EMS** | Process Explorer, Variant Explorer, PQL custom KPIs |
+| **Matplotlib** | Cycle time distribution, activity frequency charts |
+
 ---
-Phase 1 — Data Preparation (Python)
-Notebook: `Proyecto_PM.ipynb`
-Loaded BPI 2012 XES file using pm4py (262,200 raw events)
-Filtered lifecycle transitions — kept only `COMPLETE` events (164,506 events)
-Renamed and typed columns for downstream compatibility
-Calculated cycle time per case (min/max timestamp delta)
-Exported clean tables for SQL and Celonis ingestion
-Key output:
-Metric	Value
-Events after filtering	164,506
-Cases	13,087
-Median cycle time	0.81 days
-Mean cycle time	8.61 days
-Max cycle time	91.4 days
+
+### Phase 1 — Data Preparation (Python)
+
+* **Notebook:** `Proyecto-Final-Data-Science.ipynb` *(Asegúrate de poner el nombre real de tu archivo)*
+* Loaded BPI 2012 XES file using `pm4py` (262,200 raw events).
+* Filtered lifecycle transitions — kept only `COMPLETE` events (164,506 events).
+* Renamed and typed columns for downstream compatibility.
+* Calculated cycle time per case (min/max timestamp delta).
+* Exported clean tables for SQL and Celonis ingestion.
+
+#### Key output:
+
+| Metric | Value |
+| :--- | :--- |
+| Events after filtering | 164,506 |
+| Cases | 13,087 |
+| Median cycle time | 0.81 days |
+| Mean cycle time | 8.61 days |
+| Max cycle time | 91.4 days |
+
 ---
-Phase 2 — SQL Analysis (SQLite)
-Notebook: `Proyecto_PM.ipynb` (Phase 2 section)
-Queries built on the cleaned event log loaded into SQLite:
-Query	Finding
-Process overview	13,087 cases · 164,506 events · 23 activities
-Activity frequency	W_Completeren aanvraag leads with 23,967 events
-Initial/final activities	100% start at A_SUBMITTED · 7,635 end at A_DECLINED
-Cycle time by final state	Declined cases avg 0d · Complex cases up to 91d
-Duration distribution	51.9% resolve < 1 day · 10.2% exceed 30 days
-Bottleneck detection	O_SENT_BACK: 3.78 days avg waiting time
-Rework analysis	W_Nabellen incomplete dossiers: 7.6x avg repetitions
-Variant analysis	4,336 unique variants · Top 10 cover 53% of cases
+
+### Phase 2 — SQL Analysis (SQLite)
+
+* **Notebook:** `Proyecto-Final-Data-Science.ipynb` (Phase 2 section)
+* Queries built on the cleaned event log loaded into SQLite:
+
+
+| Query | Finding |
+| :--- | :--- |
+| **Process overview** | 13,087 cases · 164,506 events · 23 activities |
+| **Activity frequency** | `W_Completeren aanvraag` leads with 23,967 events |
+| **Initial/final activities** | 100% start at `A_SUBMITTED` · 7,635 end at `A_DECLINED` |
+| **Cycle time by final state** | Declined cases avg 0d · Complex cases up to 91d |
+| **Duration distribution** | 51.9% resolve < 1 day · 10.2% exceed 30 days |
+| **Bottleneck detection** | `O_SENT_BACK`: 3.78 days avg waiting time |
+| **Rework analysis** | `W_Nabellen incomplete dossiers`: 7.6x avg repetitions |
+| **Variant analysis** | 4,336 unique variants · Top 10 cover 53% of cases |
+
 ---
-Phase 3 — Celonis EMS
-Environment: Celonis Training EMS (`training.celonis.cloud`)  
-Data Model: `BPI2012_MODEL` — single activity table, event log configured
-Process Explorer
+
+### Phase 3 — Celonis EMS
+
+* **Environment:** Celonis Training EMS (`training.celonis.cloud`)  
+* **Data Model:** `BPI2012_MODEL` — single activity table, event log configured
+
+#### Process Explorer
 Full process map rendered with 100% of activities and 70.5% of connections visualized. Confirms the bimodal process structure identified in Python.
-Variant Explorer
-2,312 variants identified
-Variant #1 (happy path): `A_SUBMITTED → A_PARTLYSUBMITTED → A_DECLINED` — 26% of cases, 0.0 days
-Process Overview KPIs (auto-generated)
-Cases per day: 79
-Events per day: 991
-Throughput time: 7 days
-Custom PQL KPIs
-KPI	Formula approach	Result
-Avg Days To Decline	`CALC_THROUGHPUT` (A_SUBMITTED → A_DECLINED)	2.07 days
-Rework Rate %	`PU_COUNT` + `DOMAIN_TABLE` + `CASE WHEN`	53.6%
-Avg Amount Declined	`AVG` + `CASE WHEN` activity filter	€12,191
-Cases Over 30 Days %	`CALC_THROUGHPUT` + `CASE WHEN` threshold	10.2%
-Avg Events Per Case	`AVG` + `PU_COUNT` + `DOMAIN_TABLE`	12.57
----
+
+#### Variant Explorer
+* 2,312 variants identified.
+* **Variant #1 (happy path):** `A_SUBMITTED` → `A_PARTLYSUBMITTED` → `A_DECLINED` — 26% of cases, 0.0 days.
+
+#### Process Overview KPIs (auto-generated)
+* **Cases per day:** 79
+* **Events per day:** 991
+* **Throughput time:** 7 days
+
+#### Custom PQL KPIs
+
+| KPI | Formula approach | Result |
+| :--- | :--- | :--- |
+| **Avg Days To Decline** | `CALC_THROUGHPUT` (A_SUBMITTED → A_DECLINED) | 2.07 days |
+| **Rework Rate %** | `PU_COUNT` + `DOMAIN_TABLE` + `CASE WHEN` | 53.6% |
+| **Avg Amount Declined** | `AVG` + `CASE WHEN` activity filter | €12,191 |
+| **Cases Over 30 Days %** | `CALC_THROUGHPUT` + `CASE WHEN` threshold | 10.2% |
+| **Avg Events Per Case** | `AVG` + `PU_COUNT` + `DOMAIN_TABLE` | 12.57 |
+
 Phase 4 — Root Cause Analysis
 Full RCA document available at `docs/BPI2012_RCA.md`
 Top findings
