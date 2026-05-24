@@ -1,0 +1,11 @@
+activity,avg_waiting_days
+O_SENT_BACK,3.78
+W_Nabellen offertes,2.31
+A_CANCELLED,1.12
+O_CANCELLED,0.97
+W_Valideren aanvraag,0.84
+W_Completeren aanvraag,0.8
+O_DECLINED,0.79
+W_Beoordelen fraude,0.61
+O_ACCEPTED,0.57
+W_Nabellen incomplete dossiers,0.54

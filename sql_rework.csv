@@ -1,0 +1,12 @@
+activity,cases_with_rework,avg_repetitions
+W_Completeren aanvraag,4420,4.8
+W_Nabellen offertes,4274,5.2
+W_Valideren aanvraag,2020,3.3
+W_Nabellen incomplete dossiers,1474,7.6
+O_SENT,1438,2.4
+O_SELECTED,1438,2.4
+O_CREATED,1438,2.4
+W_Afhandelen leads,772,2.5
+O_CANCELLED,749,2.3
+O_SENT_BACK,197,2.0
+W_Beoordelen fraude,81,3.0

@@ -1,0 +1,13 @@
+final_status,total_cases,avg_days,min_days,max_days
+A_DECLINED,3429,0.0,0.0,0.0
+W_Valideren aanvraag,2749,16.7,0.0,85.9
+W_Afhandelen leads,2234,0.2,0.0,6.7
+W_Completeren aanvraag,1954,3.1,0.0,32.6
+W_Nabellen offertes,1314,16.5,0.0,82.8
+A_CANCELLED,924,32.4,0.0,91.4
+O_CANCELLED,524,34.2,2.5,91.4
+W_Nabellen incomplete dossiers,453,20.7,0.2,84.3
+W_Beoordelen fraude,57,2.6,0.0,13.0
+A_REGISTERED,1,12.9,12.9,12.9
+A_APPROVED,1,12.9,12.9,12.9
+A_ACTIVATED,1,12.9,12.9,12.9
