@@ -153,7 +153,7 @@ Avg events/case	~12.6	—	12.57
 How to Run
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/bpi2012-process-mining
+git clone https://github.com/marianospessot/bpi2012-process-mining
 
 # 2. Install dependencies
 pip install pandas pm4py matplotlib
