@@ -1,15 +1,19 @@
 Process Mining — BPI Challenge 2012
 End-to-end process analysis of a Dutch bank loan application process
 ![Python](https://img.shields.io/badge/Python-3.x-blue) ![SQL](https://img.shields.io/badge/SQL-SQLite-lightgrey) ![Celonis](https://img.shields.io/badge/Celonis-EMS-purple) ![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
----
-Project Summary
-This project performs a full end-to-end Process Mining analysis of the BPI Challenge 2012 dataset — a real loan application process from a Dutch financial institution. The analysis connects three tools in a coherent analytical narrative: Python for data preparation, SQL for quantitative KPI calculation, and Celonis EMS for visual process mining and PQL-based metrics.
-Key findings at a glance:
-26.2% of cases follow a fast-rejection path (happy path = decline in 0 days)
-53.6% rework rate concentrated exclusively in manual work items
-O_SENT_BACK identified as primary bottleneck with 3.78 days avg waiting time
-4,336 unique variants indicating low process standardization
-Cross-tool validation confirms consistency across all three analytical layers
+### Project Summary
+
+This project performs a full end-to-end Process Mining analysis of the BPI Challenge 2012 dataset — a real loan application process from a Dutch financial institution. 
+
+The analysis connects three tools in a coherent analytical narrative: Python for data preparation, SQL for quantitative KPI calculation, and Celonis EMS for visual process mining and PQL-based metrics.
+
+**Key findings at a glance:**
+* **26.2%** of cases follow a fast-rejection path (happy path = decline in 0 days).
+* **53.6%** rework rate concentrated exclusively in manual work items.
+* **O_SENT_BACK** identified as primary bottleneck with 3.78 days avg waiting time.
+* **4,336** unique variants indicating low process standardization.
+* **Cross-tool validation** confirms consistency across all three analytical layers.
+
 ---
 Dataset
 Source: BPI Challenge 2012 — 4TU Research Data  
