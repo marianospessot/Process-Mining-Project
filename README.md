@@ -1,5 +1,6 @@
 Process Mining — BPI Challenge 2012
 End-to-end process analysis of a Dutch bank loan application process
+
 ![Python](https://img.shields.io/badge/Python-3.x-blue) ![SQL](https://img.shields.io/badge/SQL-SQLite-lightgrey) ![Celonis](https://img.shields.io/badge/Celonis-EMS-purple) ![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
 ### Project Summary
 
