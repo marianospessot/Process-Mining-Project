@@ -15,17 +15,19 @@ The analysis connects three tools in a coherent analytical narrative: Python for
 * **4,336** unique variants indicating low process standardization.
 * **Cross-tool validation** confirms consistency across all three analytical layers.
 
----
-Dataset
-Source: BPI Challenge 2012 — 4TU Research Data  
-Format: XES (converted to CSV for analysis)  
-Size: 262,200 events · 13,087 cases · 23 activities  
-Process: Loan application lifecycle at a Dutch bank  
-Sub-processes:
-`A_` Application lifecycle (submission, acceptance, decline)
-`O_` Offer management (creation, sending, cancellation)
-`W_` Manual work items (follow-up, validation, completion)
----
+
+### Dataset
+
+* **Source:** [BPI Challenge 2012 — 4TU Research Data](https://doi.org)
+* **Format:** XES (converted to CSV for analysis)
+* **Size:** 262,200 events · 13,087 cases · 23 activities
+* **Process:** Loan application lifecycle at a Dutch bank
+
+**Sub-processes:**
+* `A_` Application lifecycle (submission, acceptance, decline)
+* `O_` Offer management (creation, sending, cancellation)
+* `W_` Manual work items (follow-up, validation, completion)
+
 Project Structure
 ```
 ├── Proyecto_PM.ipynb          # Main notebook — Phases 1 and 2
